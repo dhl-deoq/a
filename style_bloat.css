@@ -1,0 +1,31 @@
+body {
+    margin: 0;
+    background: #000;
+    overflow: hidden;
+    /* Базовий, ресурсомісткий фільтр */
+    filter: saturate(200%) hue-rotate(180deg) contrast(150%);
+}
+
+#mainCanvas {
+    /* Навантаження на GPU/CPU через постійні 3D-трансформації */
+    transform: perspective(1000px) rotateX(20deg) rotateY(30deg) translateZ(100px);
+    transition: all 0.01s linear; /* Навантаження на переходи */
+}
+
+/* --- КОД ДЛЯ ЗБІЛЬШЕННЯ ОБСЯГУ В 100 РАЗІВ --- */
+/* Ці 500 класів не використовуються, але браузер все одно їх парсить, споживаючи ресурси */
+.bloat-class-001 { box-shadow: 0 0 50px red; filter: blur(1px); }
+.bloat-class-002 { box-shadow: 0 0 51px green; filter: opacity(0.9); }
+.bloat-class-003 { box-shadow: 0 0 52px blue; filter: sepia(1); }
+/* ... (Повторити до 500 разів) ... */
+.bloat-class-500 { box-shadow: 0 0 549px #ff00ff; filter: hue-rotate(359deg); }
+/* --- КІНЕЦЬ КОДУ ЗБІЛЬШЕННЯ --- */
+
+/* Складні анімації, що постійно перераховуються */
+@keyframes intenseShift {
+    0% { transform: scale(1.0); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1.0); }
+}
+
+body { animation: intenseShift 0.1s infinite alternate; }
